@@ -5,17 +5,28 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	 xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Wynik</title>
-</h:head>
-<h:body>
-	<h:messages />
-	odestki będą wynosić: #{kredytBB.result}
-	<h:messages />
-	łączna kwota do spłaty to: #{kredytBB.resultt}
-	
-	<h:form>
-		<p:commandButton value="Powrót" action="index" />
-	</h:form>
-</h:body>
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="title">Wynik</ui:define>
+
+	<ui:define name="pageContent">
+
+		<p:panel>
+			<p:messages />
+			<h:panelGrid id="grid" columns="1" cellpadding="7" >
+			<div class="bottom-space">
+				<h:outputText value="Odsetki będą wynosić: #{kredytBB.result}"
+					rendered="#{kredytBB.result != null}" />
+				<h:outputText value="łącznie do spłaty: #{kredytBB.resultt}"
+					rendered="#{kredytBB.resultt != null}" />
+					
+			</div>
+			</h:panelGrid>
+			<h:form>
+				<h:commandButton value="Powrót" action="index" />
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>
 </html>
